@@ -1,10 +1,10 @@
 defmodule Util do
   @moduledoc """
-  Utility module for displaying messages using java.
+  Modulo usado para enviar mensajes de java.
   """
 
   @doc """
-    Prompts the user for input using a Java dialog and returns the input.
+    Promp del usuario que ingresa la informacion en java y la retorna en u  input.
   """
   def input_data(data) do
     System.cmd("java", ["-cp", ".", "seguimiento_02.Mensaje", "input", data])
@@ -21,7 +21,7 @@ defmodule Util do
   end
 
   @doc """
-    Displays a message using a Java dialog.
+    Muestra la cantidad de letras de la palabra ingresada.
   """
   def show_message(message) do
     length = String.length(message)
@@ -29,6 +29,9 @@ defmodule Util do
     System.cmd("java", ["-cp", ".", "seguimiento_02.Mensaje", mensaje])
   end
 
+  @doc """
+    Calcula el salario usando los datos ingresados.
+  """
   def calcular_salario() do
     {output, _} = System.cmd("java", ["-cp", ".", "seguimiento_02.Mensaje_2", "empleado"])
     datos = String.trim(output)
