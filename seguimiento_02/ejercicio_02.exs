@@ -1,15 +1,13 @@
-defmodule Main do
+defmodule Ejercicio2 do
   @moduledoc """
-  Modulo usado para contar las letras de una palabra.
+  Cuenta las letras de una palabra y muestra el resultado.
   """
 
-  @doc """
-    Main que recibe una palabra y devuelve su cantidad de letras.
-  """
   def main() do
-    Util.input_data("Introduzca la palabra:")
-    |> Util.show_message()
+    palabra = Util.input_data("Introduzca la palabra:")
+    mensaje = "El número de letras es: #{String.length(palabra)}"
+    Util.show_message(mensaje)
   end
 end
 
-Main.main()
+Ejercicio2.main()

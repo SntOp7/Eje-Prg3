@@ -1,15 +1,13 @@
-defmodule Main do
+defmodule Ejercicio1 do
   @moduledoc """
-  Modulo usado para transformar las frases en mayuscula.
+  Convierte una frase a mayúsculas y la muestra en un JOptionPane de Java.
   """
 
-  @doc """
-    Main que recibe y envia la informacion en Mayuscula.
-  """
   def main() do
     Util.input_data("Introduzca el mensaje:")
-    |> Util.show_message_mayuscula()
+    |> String.upcase()
+    |> Util.show_message()
   end
 end
 
-Main.main()
+Ejercicio1.main()
