@@ -3,6 +3,9 @@ defmodule Ejercicio3 do
   Calcula el salario neto de un empleado pidiendo los datos con formularios en Java.
   """
 
+  @doc """
+  Main que solicita datos de un empleado y calcula su salario neto.
+  """
   def main() do
     nombre = Util.input_data("Ingrese su nombre:")
     horas_str = Util.input_data("Ingrese sus horas trabajadas:")
