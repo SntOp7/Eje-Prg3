@@ -1,27 +1,32 @@
 defmodule NodoServidor do
-  @nombre_servicio_local :servicio_cadenas
+
+  @nodo_servidor :"servidor@servidor"
+  @nombre_proceso :servicio_cadenas
 
   def main() do
-    Util.mostrar_mensaje("PROCESO SECUNDARIO")
-    registrar_servicio(@nombre_servicio_local)
+    IO.puts("SE INICIA EL SERVIDOR")
+    iniciar_nodo(@nodo_servidor)
+    registrar_servicio(@nombre_proceso)
     procesar_mensajes()
   end
 
-  defp registrar_servicio(nombre_servicio_local),
-    do: Process.register(self(), nombre_servicio_local)
+  def iniciar_nodo(nombre) do
+    Node.start(nombre)
+    Node.set_cookie(:my_cookie)
+  end
+
+  defp registrar_servicio(nombre_servicio_local), do:
+    Process.register(self(), nombre_servicio_local)
 
   defp procesar_mensajes() do
     receive do
+      {productor, :fin} ->
+        send(productor, :fin)
       {productor, mensaje} ->
         respuesta = procesar_mensaje(mensaje)
         send(productor, respuesta)
-        if respuesta != :fin, do: procesar_mensajes()
+        procesar_mensajes()
     end
-  end
-
-  defp procesar_mensaje(:fin) do
-    IO.puts("Servicio finalizado.")
-    :fin
   end
 
   defp procesar_mensaje({:mayusculas, msg}), do: String.upcase(msg)
